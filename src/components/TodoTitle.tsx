@@ -1,14 +1,19 @@
 import React, { memo } from "react";
-import { Heading } from "@chakra-ui/react";
+import { Heading} from "@chakra-ui/react";
 
-type Props = {
-  title: any;
+// interface IFontSize {
+//   base: string;
+//   md: string;
+// }
+
+interface ITodoTitleProps {
+  title: string;
   as: any;
   fontSize: any;
-  mt?: any;
+  mt: string;
 };
 
-export const TodoTitle = memo(({ title, as, fontSize, mt }: Props) => {
+export const TodoTitle = memo(({ title, as, fontSize, mt }: ITodoTitleProps) => {
   return (
     <Heading mt={mt} as={as} fontSize={fontSize} w="full">
       {title}

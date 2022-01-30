@@ -1,11 +1,11 @@
 import { Textarea, Button } from "@chakra-ui/react";
 
-type Props = {
-  placeholder: any;
-  leftIcon: any;
-  buttonText: any;
-  inputEl: any;
-  handleAddTodoListItem: any;
+interface ITodoAddProps {
+  placeholder: string;
+  leftIcon: React.ReactElement;
+  buttonText: string;
+  inputEl: React.RefObject<HTMLTextAreaElement>;
+  handleAddTodoListItem: React.MouseEventHandler<HTMLButtonElement>;
 };
 
 export const TodoAdd = ({
@@ -14,7 +14,7 @@ export const TodoAdd = ({
   buttonText,
   inputEl,
   handleAddTodoListItem
-}: Props) => {
+}: ITodoAddProps) => {
   return (
     <>
       <Textarea

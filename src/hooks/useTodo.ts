@@ -3,27 +3,28 @@ import { useState, useEffect } from "react";
 import { ulid } from "ulid";
 
 import * as todoData from "../apis/todos";
+import { IReadTodo } from "../interfaces/Todo";
 
-interface Todo {
-  id: number;
-  content: string;
-  done: boolean;
-};
+
 
 export const useTodo = () => {
 
-  // const [todoList, setTodoList] = useState([]);
-  const [todoList, setTodoList] = useState<Array<Todo>>([]);
+  const [todoList, setTodoList] = useState<Array<IReadTodo>>([]);
 
   useEffect(() => {
-    todoData.getAllTodosData().then((todo: Array<Todo>) => {
-      const todoList: Array<Todo> = [...todo]
+    todoData.getAllTodosData().then((todo: Array<IReadTodo>) => {
+      const todoList: Array<IReadTodo> = [...todo]
       setTodoList(todoList.reverse());
     });
   }, []);
 
-  const toggleTodoListItemStatus = (id:number, done:boolean) => {
-    const todoItem = todoList.find((item:Todo) => item.id === id);
+  /**
+   * toggleTodoListItemStatus
+   * @param id {string}
+   * @param done {boolean}
+   */
+  const toggleTodoListItemStatus = (id:string, done:boolean) : void => {
+    const todoItem = todoList.find((item: IReadTodo) => item.id === id);
     const newTodoItem = { ...todoItem, done: !done };
     todoData.updateTodoData(id, newTodoItem).then((updatedTodo) => {
       const newTodoList = todoList.map((item) =>
@@ -32,17 +33,25 @@ export const useTodo = () => {
       setTodoList(newTodoList);
     });
   };
-  const addTodoListItem = (todoContent:string) => {
-    const newTodoItem = {
+  /**
+   * addTodoListItem
+   * @param todoContent {string}
+   */
+  const addTodoListItem = (todoContent:string) : void => {
+    const newTodoItem: IReadTodo = {
       content: todoContent,
       id: ulid(),
       done: false
     };
-    return todoData.addTodoData(newTodoItem).then((addTodo) => {
+    todoData.addTodoData(newTodoItem).then((addTodo: IReadTodo) => {
       setTodoList([addTodo, ...todoList]);
     });
   };
-  const deleteTodoListItem = (id:number) => {
+  /**
+   * deleteTodoListItem
+   * @param id {string}
+   */
+  const deleteTodoListItem = (id:string) : void  => {
     todoData.deleteTodoData(id).then((deleteListItemId) => {
       const newTodoList = todoList.filter(
         (item) => item.id !== deleteListItemId

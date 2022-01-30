@@ -2,14 +2,19 @@ import { List } from "@chakra-ui/react";
 
 import { TodoTitle } from "./TodoTitle";
 import { TodoItem } from "./TodoItem";
+import { IReadTodo } from "../interfaces/Todo";
+interface IFontSize {
+  base: string;
+  md: string;
+}
 
-type Props = {
-  title: any;
-  as: any;
-  fontSize: any;
-  todoList: any;
-  toggleTodoListItemStatus: any;
-  deleteTodoListItem: any;
+interface ITodoListProps {
+  title: string;
+  as: string;
+  fontSize: IFontSize;
+  todoList: Array<IReadTodo>;
+  toggleTodoListItemStatus: Function;
+  deleteTodoListItem: Function;
 };
 
 export const TodoList = ({
@@ -19,14 +24,14 @@ export const TodoList = ({
   todoList,
   toggleTodoListItemStatus,
   deleteTodoListItem
-}: Props) => {
+}: ITodoListProps) => {
   return (
     <>
       {todoList.length !== 0 && (
         <>
           <TodoTitle title={title} as={as} fontSize={fontSize} mt="12" />
           <List w="full">
-            {todoList.map((todo:any) => (
+            {todoList.map((todo:IReadTodo) => (
               <TodoItem
                 todo={todo}
                 key={todo.id}

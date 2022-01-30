@@ -8,6 +8,7 @@ import { useTodo } from "../hooks/useTodo";
 import { TodoTitle } from "./TodoTitle";
 import { TodoAdd } from "./TodoAdd";
 import { TodoList } from "./TodoList";
+import { IReadTodo } from "../interfaces/Todo";
 
 function App() {
   const {
@@ -17,7 +18,6 @@ function App() {
     deleteTodoListItem
   } = useTodo();
 
-  // const inputEl = useRef(null);
   const inputEl = useRef<HTMLTextAreaElement>(null);
 
   const handleAddTodoListItem = () => {
@@ -28,11 +28,11 @@ function App() {
     }
   };
 
-  const inCompletedList = todoList.filter((todo:any) => {
+  const inCompletedList = todoList.filter((todo:IReadTodo) => {
     return !todo.done;
   });
 
-  const completedList = todoList.filter((todo:any) => {
+  const completedList = todoList.filter((todo:IReadTodo) => {
     return todo.done;
   });
 
@@ -42,6 +42,7 @@ function App() {
         title="TODO進捗管理"
         as="h1"
         fontSize={{ base: "2xl", md: "3xl" }}
+        mt="1"
       />
       <TodoAdd
         placeholder="ADD TODO"
