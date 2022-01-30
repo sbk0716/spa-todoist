@@ -7,10 +7,10 @@ const todoDataUrl = "http://localhost:3100/todos";
  * @returns {Promise<IReadTodo>}
  */
 export const getAllTodosData = async (): Promise<Array<IReadTodo>> => {
-  const response = await axios.get(todoDataUrl);
+  const response = await axios.get<Array<IReadTodo>>(todoDataUrl);
   console.info("### getAllTodosData result ###");
   console.info(response.data);
-  return response.data as Array<IReadTodo>;
+  return response.data;
 };
 /**
  * addTodoData
@@ -18,10 +18,10 @@ export const getAllTodosData = async (): Promise<Array<IReadTodo>> => {
  * @returns {Promise<IReadTodo>}
  */
 export const addTodoData = async (todo: ICreateTodo): Promise<IReadTodo> => {
-  const response = await axios.post(todoDataUrl, todo);
+  const response = await axios.post<IReadTodo>(todoDataUrl, todo);
   console.info("### addTodoData result ###");
   console.info(response.data);
-  return response.data as IReadTodo;
+  return response.data;
 };
 /**
  * deleteTodoData
@@ -44,8 +44,8 @@ export const updateTodoData = async (
   id: string,
   todo: IUpdateTodo
 ): Promise<IReadTodo> => {
-  const response = await axios.put(`${todoDataUrl}/${id}`, todo);
+  const response = await axios.put<IReadTodo>(`${todoDataUrl}/${id}`, todo);
   console.info("### updateTodoData result ###");
   console.info(response.data);
-  return response.data as IReadTodo;
+  return response.data;
 };
