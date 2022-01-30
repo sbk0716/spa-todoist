@@ -9,10 +9,10 @@ const theme = extendTheme({
       },
       p: {
         fontSize: { base: "md", md: "lg" },
-        lineHeight: "tall"
-      }
-    }
-  }
+        lineHeight: "tall",
+      },
+    },
+  },
 });
 
 export default theme;

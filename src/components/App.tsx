@@ -15,7 +15,7 @@ function App() {
     todoList,
     addTodoListItem,
     toggleTodoListItemStatus,
-    deleteTodoListItem
+    deleteTodoListItem,
   } = useTodo();
 
   const inputEl = useRef<HTMLTextAreaElement>(null);
@@ -24,17 +24,13 @@ function App() {
     if (inputEl.current?.value === "") return;
     if (inputEl.current?.value) {
       addTodoListItem(inputEl.current?.value);
-      inputEl.current.value = ""
+      inputEl.current.value = "";
     }
   };
 
-  const inCompletedList = todoList.filter((todo:IReadTodo) => {
-    return !todo.done;
-  });
+  const inCompletedList = todoList.filter((todo: IReadTodo) => !todo.done);
 
-  const completedList = todoList.filter((todo:IReadTodo) => {
-    return todo.done;
-  });
+  const completedList = todoList.filter((todo: IReadTodo) => todo.done);
 
   return (
     <Container centerContent p={{ base: "4", md: "6" }} maxWidth="3xl">

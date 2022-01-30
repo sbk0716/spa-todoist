@@ -6,15 +6,15 @@ interface ITodoAddProps {
   buttonText: string;
   inputEl: React.RefObject<HTMLTextAreaElement>;
   handleAddTodoListItem: React.MouseEventHandler<HTMLButtonElement>;
-};
+}
 
-export const TodoAdd = ({
+export function TodoAdd({
   placeholder,
   leftIcon,
   buttonText,
   inputEl,
-  handleAddTodoListItem
-}: ITodoAddProps) => {
+  handleAddTodoListItem,
+}: ITodoAddProps) {
   return (
     <>
       <Textarea
@@ -34,4 +34,4 @@ export const TodoAdd = ({
       </Button>
     </>
   );
-};
+}

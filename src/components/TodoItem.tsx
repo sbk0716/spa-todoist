@@ -6,15 +6,19 @@ interface ITodoItemProps {
   todo: IReadTodo;
   toggleTodoListItemStatus: Function;
   deleteTodoListItem: Function;
-};
+}
 
-export const TodoItem = ({
+export function TodoItem({
   todo,
   toggleTodoListItemStatus,
-  deleteTodoListItem
-}: ITodoItemProps) => {
-  const handleToggleTodoListItemStatus: React.MouseEventHandler<HTMLButtonElement> = () => toggleTodoListItemStatus(todo.id, todo.done);
-  const handleDeleteTodoListItem: React.MouseEventHandler<HTMLButtonElement> = () => deleteTodoListItem(todo.id);
+  deleteTodoListItem,
+}: ITodoItemProps) {
+  const handleToggleTodoListItemStatus: React.MouseEventHandler<
+    HTMLButtonElement
+  > = () => toggleTodoListItemStatus(todo.id, todo.done);
+  const handleDeleteTodoListItem: React.MouseEventHandler<
+    HTMLButtonElement
+  > = () => deleteTodoListItem(todo.id);
 
   const label = todo.done ? "未完了リストへ" : "完了リストへ";
   const setColorScheme = todo.done ? "pink" : "blue";
@@ -47,4 +51,4 @@ export const TodoItem = ({
       </Flex>
     </ListItem>
   );
-};
+}

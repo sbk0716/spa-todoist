@@ -1,5 +1,5 @@
 import React, { memo } from "react";
-import { Heading} from "@chakra-ui/react";
+import { Heading } from "@chakra-ui/react";
 
 // interface IFontSize {
 //   base: string;
@@ -11,12 +11,12 @@ interface ITodoTitleProps {
   as: any;
   fontSize: any;
   mt: string;
-};
+}
 
-export const TodoTitle = memo(({ title, as, fontSize, mt }: ITodoTitleProps) => {
-  return (
+export const TodoTitle = memo(
+  ({ title, as, fontSize, mt }: ITodoTitleProps) => (
     <Heading mt={mt} as={as} fontSize={fontSize} w="full">
       {title}
     </Heading>
-  );
-});
+  )
+);

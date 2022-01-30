@@ -3,6 +3,7 @@ import { List } from "@chakra-ui/react";
 import { TodoTitle } from "./TodoTitle";
 import { TodoItem } from "./TodoItem";
 import { IReadTodo } from "../interfaces/Todo";
+
 interface IFontSize {
   base: string;
   md: string;
@@ -15,23 +16,23 @@ interface ITodoListProps {
   todoList: Array<IReadTodo>;
   toggleTodoListItemStatus: Function;
   deleteTodoListItem: Function;
-};
+}
 
-export const TodoList = ({
+export function TodoList({
   title,
   as,
   fontSize,
   todoList,
   toggleTodoListItemStatus,
-  deleteTodoListItem
-}: ITodoListProps) => {
+  deleteTodoListItem,
+}: ITodoListProps) {
   return (
     <>
       {todoList.length !== 0 && (
         <>
           <TodoTitle title={title} as={as} fontSize={fontSize} mt="12" />
           <List w="full">
-            {todoList.map((todo:IReadTodo) => (
+            {todoList.map((todo: IReadTodo) => (
               <TodoItem
                 todo={todo}
                 key={todo.id}
@@ -44,4 +45,4 @@ export const TodoList = ({
       )}
     </>
   );
-};
+}
