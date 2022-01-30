@@ -1,16 +1,13 @@
-import React, { useRef } from "react";
-
+import { useRef } from "react";
 import { Container } from "@chakra-ui/react";
 import { AddIcon } from "@chakra-ui/icons";
-
 import { useTodo } from "../hooks/useTodo";
-
 import { TodoTitle } from "./TodoTitle";
 import { TodoAdd } from "./TodoAdd";
 import { TodoList } from "./TodoList";
 import { IReadTodo } from "../interfaces/Todo";
 
-function App() {
+const App = () => {
   const {
     todoList,
     addTodoListItem,
@@ -18,9 +15,13 @@ function App() {
     deleteTodoListItem,
   } = useTodo();
 
-  const inputEl = useRef<HTMLTextAreaElement>(null);
+  const inputEl: React.RefObject<HTMLTextAreaElement> =
+    useRef<HTMLTextAreaElement>(null);
 
-  const handleAddTodoListItem = () => {
+  /**
+   * handleAddTodoListItem
+   */
+  const handleAddTodoListItem = (): void => {
     if (inputEl.current?.value === "") return;
     if (inputEl.current?.value) {
       addTodoListItem(inputEl.current?.value);
@@ -65,6 +66,6 @@ function App() {
       />
     </Container>
   );
-}
+};
 
 export default App;

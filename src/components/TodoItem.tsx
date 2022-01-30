@@ -4,15 +4,15 @@ import { IReadTodo } from "../interfaces/Todo";
 
 interface ITodoItemProps {
   todo: IReadTodo;
-  toggleTodoListItemStatus: Function;
-  deleteTodoListItem: Function;
+  toggleTodoListItemStatus: (arg1: string, arg2: boolean) => void;
+  deleteTodoListItem: (arg1: string) => void;
 }
 
-export function TodoItem({
+export const TodoItem = ({
   todo,
   toggleTodoListItemStatus,
   deleteTodoListItem,
-}: ITodoItemProps) {
+}: ITodoItemProps) => {
   const handleToggleTodoListItemStatus: React.MouseEventHandler<
     HTMLButtonElement
   > = () => toggleTodoListItemStatus(todo.id, todo.done);
@@ -51,4 +51,4 @@ export function TodoItem({
       </Flex>
     </ListItem>
   );
-}
+};

@@ -8,30 +8,28 @@ interface ITodoAddProps {
   handleAddTodoListItem: React.MouseEventHandler<HTMLButtonElement>;
 }
 
-export function TodoAdd({
+export const TodoAdd = ({
   placeholder,
   leftIcon,
   buttonText,
   inputEl,
   handleAddTodoListItem,
-}: ITodoAddProps) {
-  return (
-    <>
-      <Textarea
-        placeholder={placeholder}
-        bgColor="white"
-        mt="8"
-        borderColor="gray.400"
-        ref={inputEl}
-      />
-      <Button
-        onClick={handleAddTodoListItem}
-        colorScheme="blue"
-        leftIcon={leftIcon}
-        mt="8"
-      >
-        {buttonText}
-      </Button>
-    </>
-  );
-}
+}: ITodoAddProps) => (
+  <>
+    <Textarea
+      placeholder={placeholder}
+      bgColor="white"
+      mt="8"
+      borderColor="gray.400"
+      ref={inputEl}
+    />
+    <Button
+      onClick={handleAddTodoListItem}
+      colorScheme="blue"
+      leftIcon={leftIcon}
+      mt="8"
+    >
+      {buttonText}
+    </Button>
+  </>
+);
