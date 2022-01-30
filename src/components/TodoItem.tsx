@@ -4,17 +4,21 @@ import { IReadTodo } from "../interfaces/Todo";
 
 interface ITodoItemProps {
   todo: IReadTodo;
-  toggleTodoListItemStatus: Function;
-  deleteTodoListItem: Function;
-};
+  toggleTodoListItemStatus: (arg1: string, arg2: boolean) => void;
+  deleteTodoListItem: (arg1: string) => void;
+}
 
 export const TodoItem = ({
   todo,
   toggleTodoListItemStatus,
-  deleteTodoListItem
+  deleteTodoListItem,
 }: ITodoItemProps) => {
-  const handleToggleTodoListItemStatus: React.MouseEventHandler<HTMLButtonElement> = () => toggleTodoListItemStatus(todo.id, todo.done);
-  const handleDeleteTodoListItem: React.MouseEventHandler<HTMLButtonElement> = () => deleteTodoListItem(todo.id);
+  const handleToggleTodoListItemStatus: React.MouseEventHandler<
+    HTMLButtonElement
+  > = () => toggleTodoListItemStatus(todo.id, todo.done);
+  const handleDeleteTodoListItem: React.MouseEventHandler<
+    HTMLButtonElement
+  > = () => deleteTodoListItem(todo.id);
 
   const label = todo.done ? "未完了リストへ" : "完了リストへ";
   const setColorScheme = todo.done ? "pink" : "blue";
