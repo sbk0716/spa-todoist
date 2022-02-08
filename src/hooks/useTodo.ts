@@ -12,16 +12,18 @@ interface IUseTodoResponse {
   deleteTodoListItem: (arg1: string) => void;
 }
 /**
- * useTodo
+ * custom hook | useTodo
  * @returns {IUseTodoResponse}
  */
-export const useTodo = () => {
+export const useTodo = (): IUseTodoResponse => {
+  // execute useState
   const [todoList, setTodoList] = useState<Array<IReadTodo>>([]);
 
   useEffect(() => {
     todoData
       .getAllTodosData()
       .then((todo: Array<IReadTodo>) => {
+        // execute setTodoList
         setTodoList([...todo].reverse());
       })
       .catch((e) => {
@@ -44,6 +46,7 @@ export const useTodo = () => {
         const newTodoList = todoList.map((item) =>
           item.id !== updatedTodo.id ? item : updatedTodo
         );
+        // execute setTodoList
         setTodoList(newTodoList);
       })
       .catch((e) => {
@@ -64,6 +67,7 @@ export const useTodo = () => {
     todoData
       .addTodoData(newTodoItem)
       .then((addTodo: IReadTodo) => {
+        // execute setTodoList
         setTodoList([addTodo, ...todoList]);
       })
       .catch((e) => {
@@ -82,6 +86,7 @@ export const useTodo = () => {
         const newTodoList = todoList.filter(
           (item) => item.id !== deleteListItemId
         );
+        // execute setTodoList
         setTodoList(newTodoList);
       })
       .catch((e) => {
@@ -95,5 +100,5 @@ export const useTodo = () => {
     toggleTodoListItemStatus,
     addTodoListItem,
     deleteTodoListItem,
-  } as IUseTodoResponse;
+  };
 };
